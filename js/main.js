@@ -34,11 +34,11 @@ let currentRoom = roomOne
 
 let parseUserInput = () =>{
     const userCommand = document.getElementById("userInput").value;
-    let numberOfWords = userCommand.split(" ").length
+    const numberOfWords = userCommand.split(" ").length
     console.log(numberOfWords)
-    let userCommandVerb = userCommand.split(" ").shift();
-    let userCommandObject = userCommand.split(" ")[1];
-    let userCommandObjectTwo = userCommand.split(" ").pop();
+    const userCommandVerb = userCommand.split(" ").shift();
+    const userCommandObject = userCommand.split(" ")[1];
+    const userCommandObjectTwo = userCommand.split(" ").pop();
 
     return {verb: userCommandVerb, object: userCommandObject, objectTwo: userCommandObjectTwo, number: numberOfWords}}
 
