@@ -52,11 +52,23 @@ const postOutput = (textOutput) => {
     
 }
 
+const inventoryOutput = (userInput) => {
+    if (userInput.verb == "inventory" || (userInput.object == "inventory" && objectExamine.includes(userInput.verb)) || (userInput.object == "inventory" && objectInteract.includes(userInput.verb))) {
+        postOutput(`Inventory: <br>${playerInventory.join(", ")}`)
+
+        return true 
+    }
+
+    return false
+}
+
 // DETERMINES ACTION
 
 let interpretUserInput = (userInput) => {
 
-   
+    if (inventoryOutput(userInput)) {
+        return 
+    }
 
     if (userInput.number > 2) {
         const objectCombination = objectCombinations.get(JSON.stringify([currentRoom.get(userInput.object), currentRoom.get(userInput.objectTwo)]))
