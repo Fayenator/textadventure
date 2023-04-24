@@ -61,3 +61,13 @@ h1{
      color: rgb(151, 149, 149);
      text-align: center;
 }
+
+#textOutput {
+     color: rgb(151, 149, 149);
+}
+
+#userInput {
+     background-color: rgb(29, 29, 29);
+     color: rgb(151, 149, 149);
+     border: none;
+}
