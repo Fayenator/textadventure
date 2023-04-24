@@ -4,7 +4,7 @@ import { firstDoor, goldenKey, redVase, smallTable, objectCombinations, } from "
 
 const userInput = document.getElementById("userInput");
 
-const objectExamine = ["look", "Look", "examine", "Examine", "inspect","Inspect", ];
+const objectExamine = ["look", "Look", "examine", "Examine", "inspect","Inspect", "check", ];
 
 const objectInteract = ["open", "interact", "use", "try", ]
 
