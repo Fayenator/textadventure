@@ -2,7 +2,7 @@
 
 import { firstDoor, goldenKey, redVase, smallTable, objectCombinations, } from "./objectStringsRoomOne.js";
 
-const userInput = document.getElementById("userInput");
+const uInput = document.getElementById("userInput");
 
 const objectExamine = ["look", "Look", "examine", "Examine", "inspect","Inspect", "check", ];
 
@@ -12,11 +12,10 @@ const objectTake = ["take", ]
 
 const objectUseWith = ["use", "combine", ]
 
-
 // PLAYER INVENTORY
 
 let playerInventory = [
-
+    
 ]
 
 // MAPS
@@ -129,14 +128,13 @@ let interpretUserInput = (userInput) => {
     
 }
 
-
 // RUN FUNCTIONS ON ENTER
 
-userInput.addEventListener("keypress", function(event) {
+uInput.addEventListener("keypress", function(event) {
     if (event.key === "Enter") {
         let userInputs = parseUserInput()
         interpretUserInput(userInputs)
-        userInput.value = ""
+        uInput.value = ""
     }
 })
 
