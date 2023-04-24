@@ -71,3 +71,13 @@ h1{
      color: rgb(151, 149, 149);
      border: none;
 }
+
+#gameText {
+     height: 300px;
+     position: relative;
+}
+
+#textOutput {
+     position: absolute;
+     bottom: 0;
+}
