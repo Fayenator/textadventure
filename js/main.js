@@ -119,7 +119,7 @@ let interpretUserInput = (userInput) => {
                 if (currentRoom.get(userInput.object).hasOwnProperty("takeObject")) {
                     postOutput(currentRoom.get(userInput.object).takeObject);
 
-                    playerInventory += userInput.object;
+                    playerInventory.push(userInput.object);
                     console.log(JSON.stringify(playerInventory));
                 }
                 //  CAN'T TAKE
