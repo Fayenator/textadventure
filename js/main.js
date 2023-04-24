@@ -43,6 +43,15 @@ let parseUserInput = () =>{
     return {verb: userCommandVerb, object: userCommandObject, objectTwo: userCommandObjectTwo, number: numberOfWords}}
 
 
+const postOutput = (textOutput) => {
+    
+    const oldOutput = document.getElementById("textOutput").innerHTML
+    const listOfLines = oldOutput.split("<br>")
+
+    document.getElementById("textOutput").innerHTML = `${listOfLines.slice(-5).join("<br>")} <br> ${textOutput}`;
+    
+}
+
 // DETERMINES ACTION
 
 let interpretUserInput = (userInput) => {
@@ -56,18 +65,17 @@ let interpretUserInput = (userInput) => {
         // USE OBJECT ON OBJECT
         if (objectUseWith.includes(userInput.verb) && objectCombination != null && playerInventory.includes(userInput.object)) {
 
-            document.getElementById("textOutput").innerHTML = 
-            objectCombination;
+            postOutput(objectCombination);
         }
         else if (objectUseWith.includes(userInput.verb) && objectCombination != null) {
 
-            document.getElementById("textOutput").innerHTML = `You don't have a ${userInput.object}.`
+            postOutput(`You don't have a ${userInput.object}.`)
 
         }
 
         else {
 
-            document.getElementById("textOutput").innerHTML = "I don't know what you are trying to do.";
+            postOutput(`I don't know what you are trying to do.`);
         }
     }
         
@@ -75,19 +83,19 @@ let interpretUserInput = (userInput) => {
         // EXAMINE TABLE
         if (objectExamine.includes(userInput.verb) && currentRoom.has(userInput.object)) {
 
-            document.getElementById("textOutput").innerHTML = 
-            currentRoom.get(userInput.object).examineObject;
+            postOutput(currentRoom.get(userInput.object).examineObject);
+
         }
 
         // INTERACT
         else if (objectInteract.includes(userInput.verb) && currentRoom.has(userInput.object)) {
             if (currentRoom.get(userInput.object).hasOwnProperty("interactObject")) {
-                document.getElementById("textOutput").innerHTML = 
-                currentRoom.get(userInput.object).interactObject;
+                postOutput(currentRoom.get(userInput.object).interactObject);
+                
             }
 
             else {
-                document.getElementById("textOutput").innerHTML = `You can't use the ${userInput.object}.`
+                postOutput(`You can't use the ${userInput.object}.`)
             }
         }
 
@@ -97,24 +105,24 @@ let interpretUserInput = (userInput) => {
             if (currentRoom.has(userInput.object)) {
 
                 if (currentRoom.get(userInput.object).hasOwnProperty("takeObject")) {
-                    document.getElementById("textOutput").innerHTML = 
-                    currentRoom.get(userInput.object).takeObject;
-                    playerInventory += userInput.object
+                    postOutput(currentRoom.get(userInput.object).takeObject);
+
+                    playerInventory += userInput.object;
                     console.log(JSON.stringify(playerInventory));
                 }
                 //  CAN'T TAKE
                 else {
-                    document.getElementById("textOutput").innerHTML = `You can't take the ${userInput.object}.`;
+                    postOutput(`You can't take the ${userInput.object}.`);
                 }
             }
             // OBJECT DOESNT EXIST
             else {
-                document.getElementById("textOutput").innerHTML = `There is no ${userInput.object}.`;
+                postOutput(`There is no ${userInput.object}.`);
             } 
         } 
         // WRONG INPUT
         else {
-            document.getElementById("textOutput").innerHTML = "I don't know what you are trying to do.";
+            postOutput("I don't know what you are trying to do.");
         } 
     }
     
