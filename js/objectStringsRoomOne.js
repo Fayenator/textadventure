@@ -41,10 +41,15 @@ export const smallTable = {
 
 export const goldenKey = {
     examineObject: "A small, golden key.",
-    takeObject: "You take the key.",
-    interactObject: "What do you want to use the key with?"
+    takeObject: "You take the golden key.",
+    interactObject: "What do you want to use the golden key with?"
 }
 
+export const redVase = {
+    examineObject: "A small, red vase.",
+    takeObject: "You take the red vase.",
+    interactObject: "What do you want to use the red vase with?"
+}
 export const firstDoor = {
     examineObject: "A wooden door. You don\'t know where it leads.",
     interactObject: "You try the door. It seems to be locked.",

@@ -1,6 +1,6 @@
 // CONSTANTS 
 
-import { firstDoor, goldenKey, smallTable, objectCombinations, } from "./objectStringsRoomOne.js";
+import { firstDoor, goldenKey, redVase, smallTable, objectCombinations, } from "./objectStringsRoomOne.js";
 
 const userInput = document.getElementById("userInput");
 
@@ -25,6 +25,7 @@ const roomOne = new Map([
     
     ["table", smallTable],
     ["key", goldenKey],
+    ["vase", redVase],
     ["door", firstDoor],
 
 ])
