@@ -4,7 +4,7 @@ import { firstDoor, goldenKey, redVase, smallTable, objectCombinations, } from "
 
 const uInput = document.getElementById("userInput");
 
-const objectExamine = ["look", "Look", "examine", "Examine", "inspect","Inspect", "check", ];
+const objectExamine = ["look", "examine", "inspect", "check", ];
 
 const objectInteract = ["open", "interact", "use", "try", ]
 
@@ -33,12 +33,12 @@ let currentRoom = roomOne
 
 
 let parseUserInput = () =>{
-    const userCommand = document.getElementById("userInput").value;
-    const numberOfWords = userCommand.split(" ").length
-    console.log(numberOfWords)
-    const userCommandVerb = userCommand.split(" ").shift();
-    const userCommandObject = userCommand.split(" ")[1];
-    const userCommandObjectTwo = userCommand.split(" ").pop();
+    const userCommandLower = document.getElementById("userInput").value.toLowerCase();
+    const numberOfWords = userCommandLower.split(" ").length
+    // console.log(numberOfWords)
+    const userCommandVerb = userCommandLower.split(" ").shift();
+    const userCommandObject = userCommandLower.split(" ")[1];
+    const userCommandObjectTwo = userCommandLower.split(" ").pop();
 
     return {verb: userCommandVerb, object: userCommandObject, objectTwo: userCommandObjectTwo, number: numberOfWords}}
 
