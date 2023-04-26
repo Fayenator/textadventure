@@ -1,50 +1,26 @@
-
-// export const examineObject = {
-
-//     // initial presence strings
-//     initInitRoom: "You wake up in an unfamiliar room. There is a table in the middle, and a wooden door on the far side.",
-
-//     "table": "The table is made out of wood. There is a small key on it.",
-//     "key": "A small, golden key.",
-
-//     "door": "A wooden door. You don\'t know where it leads.",
-// }
-
-// export const interactObject = {
-//     "door": "You try the door. It seems to be locked.",
-    
-// }
-
-// export const takeObject = {
-//     "key": "You take the key.",
-// }
-
-// export const useWithObject = {
-//     "key": "You unlock the door.",
-//     "door": "You unlock the door.",
-// }
-
-
-
-
-// export const goldenKey = {
-//     "examine": "A small, golden key.",
-//     "take": "You take the key."
-//     // "use with": "You unlock the door."
-// }
-
-
-
-export const smallTable = {
-    examineObject: "The table is made out of wood. There is a small key on it.",
-}
-
 export const goldenKey = {
     reference: "key",
     objectName: "small, golden key",
     examineObject: "A small, golden key.",
     takeObject: "You take the golden key.",
-    interactObject: "What do you want to use the golden key with?"
+    interactObject: "What do you want to use the golden key with?",
+}
+
+export let smallTable = {
+    containsObject: [goldenKey, ],
+    reference: "table",
+    objectName: "small, wooden table",
+    examineObject: "The table is made out of wood. On it is ",
+    examineObjectEmpty: "The table is made out of wood.",
+   
+}
+
+export let wornSword = {
+    reference: "sword",
+    objectName: "worn iron sword",
+    examineObject: "a worn iron sword",
+    takeObject: "you take the worn sword",
+    interactObject: "What do you want to use the worn sword with?",
 }
 
 export const redVase = {
@@ -52,8 +28,26 @@ export const redVase = {
     objectName: "small, red vase",
     examineObject: "A small, red vase.",
     takeObject: "You take the red vase.",
-    interactObject: "What do you want to use the red vase with?"
+    interactObject: "What do you want to use the red vase with?",
 }
+
+export const brownBook = {
+    reference: "book",
+    objectName: "small, brown book",
+    examineObject: "A small, brown book.",
+    takeObject: "You take the brown book.",
+    interactObject: "You read the book.",
+}
+
+export let smallChest = {
+    containsObject: [redVase, brownBook],
+    reference: "chest",
+    objectName: "small, wooden chest",
+    examineObject: `The chest is made out of wood. It contains `,
+    examineObjectEmpty: "The chest is made out of wood. It is empty.",
+    
+}
+
 export const firstDoor = {
     reference: "door",
     objectName: "wooden door",
