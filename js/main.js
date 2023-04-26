@@ -51,6 +51,48 @@ const inventoryOutput = (userInput) => {
     return false
 }
 
+
+const checkContainer = (item) => {
+    for (const object of currentRoom.values()) {
+        console.log(object)
+        if (object.hasOwnProperty("containsObject") && object.containsObject.some(x => x.reference === item)) {
+            return true
+        }
+    }
+
+    return false
+}
+
+const getFromContainer = (item) => {
+    for (const object of currentRoom.values()) {
+        if (object.hasOwnProperty("containsObject")) {
+            for (const containedItem of object.containsObject) {
+                if (containedItem.reference === item) {
+                    return {
+                        item: containedItem, 
+                        container: object,
+                    }
+                }   
+            }
+        }
+    }
+
+    return null
+}
+// EXAMINE CONTAINER
+
+const examineContainer = (container) => {
+    if (container.containsObject.length === 0) {
+        postOutput(container.examineObjectEmpty)
+    }
+
+    else {
+        const objectList = container.containsObject.map(x => x.objectName).join(" and a ")
+        postOutput(`${container.examineObject} a ${objectList}.`)
+    }
+}
+
+
 // DETERMINES ACTION
 
 let interpretUserInput = (userInput) => {
@@ -60,7 +102,7 @@ let interpretUserInput = (userInput) => {
     }
 
     if (userInput.number > 2) {
-        const objectCombination = objectCombinations.get(JSON.stringify([currentRoom.get(userInput.object), currentRoom.get(userInput.objectTwo)]))
+        const objectCombination = roomOne.objectCombinations.get(JSON.stringify([currentRoom.get(userInput.object), currentRoom.get(userInput.objectTwo)]))
         // console.log(objectCombinations)
 
         // USE OBJECT ON OBJECT
@@ -82,10 +124,16 @@ let interpretUserInput = (userInput) => {
         
     else { 
         // EXAMINE TABLE
-        if (objectExamine.includes(userInput.verb) && currentRoom.has(userInput.object)) {
 
-            postOutput(currentRoom.get(userInput.object).examineObject);
+        if (objectExamine.includes(userInput.verb) && (currentRoom.has(userInput.object) || checkContainer(userInput.object))) {
+            let examinedObject = currentRoom.get(userInput.object) || getFromContainer(userInput.object).item
 
+            if (examinedObject.hasOwnProperty("containsObject")) {
+                examineContainer(examinedObject)
+            }
+            else {
+                postOutput(examinedObject.examineObject);
+            }
         }
 
         // INTERACT
@@ -103,19 +151,32 @@ let interpretUserInput = (userInput) => {
         // TAKE
         else if (objectTake.includes(userInput.verb)) { 
 
-            if (currentRoom.has(userInput.object)) {
+            if (currentRoom.has(userInput.object) || (checkContainer(userInput.object))) {
 
-                if (currentRoom.get(userInput.object).hasOwnProperty("takeObject")) {
+                if (currentRoom.has(userInput.object) && currentRoom.get(userInput.object).hasOwnProperty("takeObject")) {
                     postOutput(currentRoom.get(userInput.object).takeObject);
 
                     playerInventory.push(userInput.object);
-                    console.log(JSON.stringify(playerInventory));
+                    currentRoom.delete(userInput.object)
                 }
+
+                else if (checkContainer(userInput.object) && getFromContainer(userInput.object).item.hasOwnProperty("takeObject")) {
+                    let container = getFromContainer(userInput.object).container
+                    let item = getFromContainer(userInput.object).item
+                    postOutput(item.takeObject);
+
+                    playerInventory.push(userInput.object);
+                    container.containsObject = container.containsObject.filter(item => item.reference != userInput.object)
+                }
+
                 //  CAN'T TAKE
                 else {
                     postOutput(`You can't take the ${userInput.object}.`);
                 }
             }
+
+    
+
             // OBJECT DOESNT EXIST
             else {
                 postOutput(`There is no ${userInput.object}.`);
