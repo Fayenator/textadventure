@@ -1,6 +1,6 @@
 // CONSTANTS 
 
-import { firstDoor, goldenKey, redVase, smallTable, objectCombinations, } from "./objectStringsRoomOne.js";
+import * as roomOne from "./objectStringsRoomOne.js";
 
 const uInput = document.getElementById("userInput");
 
@@ -18,18 +18,7 @@ let playerInventory = [
     
 ]
 
-// MAPS
-
-const roomOne = new Map([
-    
-    ["table", smallTable],
-    ["key", goldenKey],
-    ["vase", redVase],
-    ["door", firstDoor],
-
-])
-
-let currentRoom = roomOne
+let currentRoom = roomOne.roomOne
 
 
 let parseUserInput = () =>{

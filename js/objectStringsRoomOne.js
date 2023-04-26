@@ -58,3 +58,12 @@ export const firstDoor = {
 export const objectCombinations = new Map ([
     [JSON.stringify([goldenKey, firstDoor]), "You unlock the door."],
 ])
+
+export let roomOne = new Map([
+    
+    ["table", smallTable],
+    ["chest", smallChest],
+    ["door", firstDoor],
+    ["sword", wornSword],
+
+])
