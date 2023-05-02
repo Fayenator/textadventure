@@ -55,6 +55,15 @@ export const firstDoor = {
     interactObject: "You try the door. It seems to be locked.",
 }
 
+export const secondDoor = {
+    reference: "iron door",
+    objectName: "iron door",
+    examineObject: "An iron door. You don\'t know where it leads.",
+    interactObject: "You try the door. It seems to be locked.",
+    goDirection: "You walk through the iron door."
+
+}
+
 export const objectCombinations = new Map ([
     [JSON.stringify([goldenKey, firstDoor]), "You unlock the door."],
 ])
@@ -64,6 +73,7 @@ export let roomOne = new Map([
     ["table", smallTable],
     ["chest", smallChest],
     ["door", firstDoor],
+    ["iron door", secondDoor],
     ["sword", wornSword],
 
 ])
