@@ -53,6 +53,8 @@ export const firstDoor = {
     objectName: "wooden door",
     examineObject: "A wooden door. You don\'t know where it leads.",
     interactObject: "You try the door. It seems to be locked.",
+    goDirection: "You walk through the wooden door."
+
 }
 
 export const secondDoor = {
