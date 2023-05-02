@@ -1,6 +1,9 @@
 // CONSTANTS 
 
 import * as roomOne from "./objectStringsRoomOne.js";
+import * as roomTwo from "./objectStringsRoomTwo.js";
+import * as roomThree from "./objectStringsRoomThree.js";
+import * as roomFour from "./objectStringsRoomFour.js";
 
 const uInput = document.getElementById("userInput");
 
