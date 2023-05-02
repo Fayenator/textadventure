@@ -15,6 +15,24 @@ const objectTake = ["take", ]
 
 const objectUseWith = ["use", "combine", ]
 
+const directionMove = ["go", "walk", ]
+
+// ROOM LAYOUT
+
+const roomHorizontal = [
+
+[roomOne.roomOne, roomTwo.roomTwo], 
+[roomThree.roomThree, roomFour.roomFour],
+
+]
+
+const roomVertical = [
+
+    [roomOne.roomOne, roomThree.roomThree], 
+    [roomTwo.roomTwo, roomFour.roomFour],
+]
+
+
 // PLAYER INVENTORY
 
 let playerInventory = [
@@ -95,6 +113,63 @@ const examineContainer = (container) => {
     }
 }
 
+// MOVE BETWEEN ROOMS
+
+const moveRoom = (userInput) => {
+    if (!directionMove.includes(userInput.verb) && userInput.number > 1) {
+
+        return false
+    }
+
+    if (userInput.object == "east" || userInput.object == "e" || userInput.verb =="e") {
+        for (const roomlist of roomHorizontal) {
+            if (roomlist[0] === currentRoom) {
+                currentRoom = roomlist[1]
+                postOutput(`You go east.`)
+                return true
+                }            
+        }
+        postOutput(`You can't go east.`)
+        return true
+    }
+
+    if (userInput.object == "west" || userInput.object == "w" || userInput.verb =="w") {
+        for (const roomlist of roomHorizontal) {
+            if (roomlist[1] === currentRoom) {
+                currentRoom = roomlist[0]
+                postOutput(`You go west.`)
+                return true
+                }
+        }
+        postOutput(`You can't go west.`)
+        return true
+    }
+
+    if (userInput.object == "north" || userInput.object == "n" || userInput.verb =="n") {
+        for (const roomlist of roomVertical) {
+            if (roomlist[1] === currentRoom) {
+                currentRoom = roomlist[0]
+                postOutput(`You go north.`)
+                return true
+                }
+        }
+        postOutput(`You can't go north.`)
+        return true
+    }
+
+    if (userInput.object == "south" || userInput.object == "s" || userInput.verb =="s") {
+        for (const roomlist of roomVertical) {
+            if (roomlist[0] === currentRoom) {
+                currentRoom = roomlist[1]
+                postOutput(`You go south.`)
+                return true
+                }
+        }
+        postOutput(`You can't go south.`)
+        return true
+    }
+
+}
 
 // DETERMINES ACTION
 
@@ -102,6 +177,10 @@ let interpretUserInput = (userInput) => {
 
     if (inventoryOutput(userInput)) {
         return 
+    }
+
+    if (moveRoom(userInput)) {
+        return
     }
 
     if (userInput.number > 2) {
